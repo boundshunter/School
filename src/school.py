@@ -65,17 +65,17 @@ class School(object):
 
 
     # 创建学生
-    def create_student(self, name, gender, age, class_name):
+    def create_student(self, stu_name, stu_gender, stu_age, classroom_name):
         # 创建学生对象
-        student_obj = Student(name,gender,age)
-        self.sch_student[name] = student_obj
+        student_obj = Student(stu_name,stu_gender,stu_age)
+        self.sch_student[stu_name] = student_obj
 
         # 建立学生和班级的关联关系
-        class_obj = self.sch_classroom[class_name]
-        class_obj.class_student[name] = student_obj
+        classroom_obj = self.sch_classroom[classroom_name]
+        classroom_obj.class_student[classroom_name] = student_obj
 
         # 更新班级信息
-        self.sch_classroom[class_name] = class_obj
+        self.sch_classroom[classroom_name] = class_obj
 
     def show_teacher_student_info(self, tech_name):
 
