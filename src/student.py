@@ -5,10 +5,10 @@ __author__ = 'jfsu'
 
 class Student(object):
     # 学生姓名，性别，年龄
-    def __init__(self, name, gender, age):
-        self.name = name
-        self.gender = gender
-        self.age = age
+    def __init__(self, stu_name, stu_gender, stu_age):
+        self.stu_name = stu_name
+        self.stu_gender = stu_gender
+        self.stu_age = stu_age
         # 初始化学生成绩为0分
         self.score = 0
 

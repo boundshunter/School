@@ -13,5 +13,5 @@ class Teacher(object):
         self.tech_classroom = {}
 
     # 讲师和教师建立关系
-    def add_tech_classroom(self,class_name,class_obj):
-        self.tech_classroom[class_name] = class_obj
+    def add_tech_classroom(self, classroom_name, class_obj):
+        self.tech_classroom[classroom_name] = class_obj
