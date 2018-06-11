@@ -57,12 +57,14 @@ class School(object):
         for classroom in self.sch_classroom:
             # 根据取出的班级获取班级对象，根据key获取value，key为 classroom
             classroom_obj = self.sch_classroom[classroom]
-            # print(classroom_obj)
-            # 打印结果
             # classroom_obj 包含（classroom_name，course_obj），获取course_name
             # 使用classroom_obj.course_obj.course_name
-            print("班级名称:\033[35;1m[%s]\033[0m\t课程:\033[35;1m[%s]\033[0m\t学生:\033[35;1m[%s]\033[0m" %
-                  (classroom_obj.classroom_name, classroom_obj.course_obj.course_name, classroom_obj.classroom_student))
+            print("班级名称:\033[35;1m[%s]\033[0m\t课程:\033[35;1m[%s]\033[0m\t学生:\033[35;1m[%s]\033[0m"
+                  % (classroom_obj.classroom_name, classroom_obj.course_obj.course_name,
+                  classroom_obj.classroom_student))
+                   # classroom_obj.classroom_student[classroom].stu_name))
+            #classroom_obj.classroom_student[classroom].stu_name 取出学生注册事选择的班级，从关联关系中取出班级对应的学生
+                  # (classroom_obj.classroom_name, classroom_obj.course_obj.course_name, classroom_obj.classroom_student))
 
 
     def modify_classroom(self,**kwargs):
@@ -110,7 +112,7 @@ class School(object):
         # 创建学生对象
         student_obj = Student(stu_name, stu_gender, stu_age)
         self.sch_student[stu_name] = student_obj
-        print(stu_obj)
+        # print(stu_obj)
         # 建立学生和班级的关联关系
         # 获取班级对象
         classroom_obj = self.sch_classroom[classroom_name]
