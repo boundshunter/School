@@ -52,20 +52,15 @@ class School(object):
 
     # 显示班级
     def show_classroom(self):
-        # course_obj = self.sch_course[course]
-        # 循环取出班级
+    #     # 循环取出班级
         for classroom in self.sch_classroom:
-            # 根据取出的班级获取班级对象，根据key获取value，key为 classroom
+    #         # 根据取出的班级获取班级对象，根据key获取value，key为 classroom
             classroom_obj = self.sch_classroom[classroom]
-            # classroom_obj 包含（classroom_name，course_obj），获取course_name
-            # 使用classroom_obj.course_obj.course_name
+    #         # if classroom_obj.classroom_student[classroom].stu_name:
             print("班级名称:\033[35;1m[%s]\033[0m\t课程:\033[35;1m[%s]\033[0m\t学生:\033[35;1m[%s]\033[0m"
                   % (classroom_obj.classroom_name, classroom_obj.course_obj.course_name,
-                  classroom_obj.classroom_student))
-                   # classroom_obj.classroom_student[classroom].stu_name))
-            #classroom_obj.classroom_student[classroom].stu_name 取出学生注册事选择的班级，从关联关系中取出班级对应的学生
-                  # (classroom_obj.classroom_name, classroom_obj.course_obj.course_name, classroom_obj.classroom_student))
-
+                     classroom_obj.classroom_student))
+    #               # classroom_obj.classroom_student[classroom].stu_name))
 
     def modify_classroom(self,**kwargs):
         pass
@@ -107,6 +102,7 @@ class School(object):
         # 新的对象赋值
         self.sch_teacher[tech_name] = teacher_obj
 
+
     # 创建学生
     def create_student(self, stu_name, stu_gender, stu_age, classroom_name):
         # 创建学生对象
@@ -118,14 +114,16 @@ class School(object):
         classroom_obj = self.sch_classroom[classroom_name]
         print(classroom_obj)
         # classroom_obj.classroom_student 获取字典值，取自src.classroom类中的 classroom_student 属性
+        # 班级对象 包含 classroom_student 对应字典，字典关系  班级名：学生对象
         classroom_obj.classroom_student[classroom_name] = student_obj
 
         # 更新班级信息
         self.sch_classroom[classroom_name] = classroom_obj
+        for cls in classroom_obj.classroom_student:
+            print(cls)
 
     # 显示讲师对应学员信息
     def show_teacher_student_info(self, tech_name):
-
         # 获取讲师对象
         teacher_obj = self.sch_teacher[tech_name]
         # teacher_obj 初始化为 讲师的对象，讲师对象里面包含 tech_classroom 属性 (self.tech_classroom = {})

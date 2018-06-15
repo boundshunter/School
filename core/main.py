@@ -119,7 +119,6 @@ class School_view(object):
         else:
             print("您需要添加的班级[%s]已存在，请使用其他班级名称." % classroom_name)
 
-
     def hire_teacher(self):
         # 输入讲师信息
         tech_name = input("输入讲师姓名：").strip()
@@ -193,11 +192,13 @@ class Teacher_view(object):
                     1、选择教室
                     2、查看班级、学员
                     3、修改学员成绩
+                    4、退出
                     '''
                     menu_dic = {
                         '1': 'choose_classroom',
                         '2': 'view_classroom_student',
-                        '3': 'change_student_score'
+                        '3': 'change_student_score',
+                        '4': 'sys_exit'
                     }
                     while True:
                         print(menu)
@@ -212,10 +213,59 @@ class Teacher_view(object):
             else:
                 print("学校名称输入有误")
                 return True
+    def choose_classroom(self):
+        # for classroom in self.sch_obj.sch_classroom:
+        #     classroom = self.
+        #     print(classroom)
+        for classroom in self.teacher_obj.tech_classroom_name:
+            pass
+            # print("{}所在班级：{}\t教授课程为：{}".format(self.teacher_obj.tech_name, classroom_obj.classroom_name,
+            #                                classroom_obj.course_obj.course_name))
+        #
+        # classroom_name = input("选择上课的班级：").strip()
+        # if classroom_name in self.sch_obj.sch_classroom:
+        #     classroom_obj = self.sch_obj.sch_classroom[classroom_name]
+        #     self.sch_obj.create_teacher(self.teacher_obj.tech_name, self.teacher_obj.tech_age, self.teacher_obj.tech_gender,
+        #                                 self.teacher_obj.tech_sal, classroom_name, classroom_obj)
+        #     self.school_file.update({self.sch_option:self.sch_obj})
+        #     self.school_file.close()
+        # else:
+        #     print("输入错误，请重新输入")
 
+    def view_classroom_student(self):
+        for classroom in self.teacher_obj.tech_classroom_name:
+            classroom_obj = self.teacher_obj.tech_classroom_name[classroom]
+            stu_list = []
+            for stu in classroom_obj.classroom_student:
+                stu_list.append(stu)
+            print("{}所在班级：{}\t教授课程为：{}\t 学生列表：{}"
+                  .format(self.teacher_obj.tech_name, classroom_obj.classroom_name, classroom_obj.course_obj.course_name,
+                          stu_list))
 
+    def change_student_score(self):
+        # 查看学生列表
+        self.view_classroom_student()
 
-
+        for classroom in self.teacher_obj.tech_classroom_name:
+            # 生成班级对象
+            classroom_obj = self.sch_obj.sch_classroom[classroom]
+            student_name = input("输入要修改成绩的学生姓名>>:").strip()
+            if student_name in classroom_obj.classroom_student:
+                # 生成学生对象
+                stu_obj = classroom_obj.classroom_student[student_name]
+                print("{}的成绩:{}\t 课程为:{}\t 班级为:{}"
+                  .format(stu_obj.stu_name, classroom_obj.course_obj.course_name, classroom_obj.classroom_name))
+                stu_gender = stu_obj.stu_gender
+                stu_age = stu_obj.stu_age
+                new_score = input("输入修改后成绩结果：").strip()
+                self.sch_obj.modify_student_score(stu_obj.stu_name,new_score)
+                self.school_file.update({self.sch_option:self.sch_obj})
+                self.school_file.close()
+            else:
+                print("学生姓名输入错误")
+    def sys_exit(self):
+        print("退出程序".center(30,'*'))
+        exit()
 
 class Student_view(object):
     def __init__(self):
